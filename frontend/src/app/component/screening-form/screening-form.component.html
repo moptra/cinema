@@ -1,0 +1,26 @@
+<form [formGroup]="screeningForm" (ngSubmit)="saveScreening()">
+
+  <div class="form-group mb-3">
+    <label for="title" class="mb-2">Title:</label>
+    <input type="text" class="form-control" id="title" placeholder="title" formControlName="title">
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="screening-date" class="mb-2">Screening date:</label>
+    <input type="datetime-local" class="form-control" id="screening-date" placeholder="screening date" formControlName="screeningDate">
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="seats" class="mb-2">Seats:</label>
+    <input type="number" class="form-control" id="seats" placeholder="number of seats" formControlName="seats">
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="image-url" class="mb-2">Picture url:</label>
+    <input type="text" class="form-control" id="image-url" placeholder="image url" formControlName="imageUrl">
+  </div>
+
+  <button [disabled]="screeningForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

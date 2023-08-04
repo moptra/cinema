@@ -49,7 +49,7 @@ Screening properties/fields:
 - Total seats (Integer, mandatory)
 - Picture URL (String, optional)
 
-**Acceptance criteria:**
+**Acceptance criteria (AC):**
 
 - There is a link on the navigation bar that navigates to the "New Screening" page (2p)
 - The form has all necessary fields and a Save button (7p)
