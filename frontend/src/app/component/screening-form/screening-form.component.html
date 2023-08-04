@@ -2,17 +2,39 @@
 
   <div class="form-group mb-3">
     <label for="title" class="mb-2">Title:</label>
-    <input type="text" class="form-control" id="title" placeholder="title" formControlName="title">
+    <input type="text" class="form-control" id="title" placeholder="title" formControlName="title"
+           [ngClass]="{'is-invalid': (screeningForm.get('title')?.invalid && screeningForm.get('title')?.touched)
+    || (screeningForm.get('title')?.errors?.['serverError'])}"
+    >
+    <small class="alert text-danger" *ngIf="screeningForm.get('title')?.invalid && screeningForm.get('title')?.touched
+           && !screeningForm.get('title')?.errors?.['serverError']">
+      Please enter a title!
+    </small>
   </div>
 
   <div class="form-group mb-3">
-    <label for="screening-date" class="mb-2">Screening date:</label>
-    <input type="datetime-local" class="form-control" id="screening-date" placeholder="screening date" formControlName="screeningDate">
+    <label for="screening-date" class="mb-2"
+    >Screening date:</label>
+    <input type="datetime-local" class="form-control" id="screening-date" placeholder="screening date" formControlName="screeningDate"
+           [ngClass]="{'is-invalid': (screeningForm.get('screeningDate')?.invalid && screeningForm.get('screeningDate')?.touched)
+    || (screeningForm.get('screeningDate')?.errors?.['serverError'])}">
+
+    <small class="alert text-danger" *ngIf="screeningForm.get('screeningDate')?.invalid && screeningForm.get('screeningDate')?.touched
+           && !screeningForm.get('screeningDate')?.errors?.['serverError']">
+      Please enter the date of the screening!
+    </small>
   </div>
 
   <div class="form-group mb-3">
     <label for="seats" class="mb-2">Seats:</label>
-    <input type="number" class="form-control" id="seats" placeholder="number of seats" formControlName="seats">
+    <input type="number" class="form-control" id="seats" placeholder="number of seats" formControlName="seats"
+           [ngClass]="{'is-invalid': (screeningForm.get('seats')?.invalid && screeningForm.get('seats')?.touched)
+    || (screeningForm.get('seats')?.errors?.['serverError'])}"
+    >
+    <small class="alert text-danger" *ngIf="screeningForm.get('seats')?.invalid && screeningForm.get('seats')?.touched
+           && !screeningForm.get('seats')?.errors?.['serverError']">
+      Please enter the number of seats!
+    </small>
   </div>
 
   <div class="form-group mb-3">

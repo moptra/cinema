@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "screening_id")
     private Long id;
     @Column (nullable = false)
     private String title;
@@ -22,11 +25,15 @@ public class Screening {
     private Integer seats;
     @Column
     private String imageUrl;
+    @OneToMany(mappedBy = "screening")
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Screening(ScreeningCommand screeningCommand) {
         this.title = screeningCommand.getTitle();
         this.screeningDate = screeningCommand.getScreeningDate();
         this.seats = screeningCommand.getSeats();
         this.imageUrl = screeningCommand.getImageUrl();
+
+
     }
 }

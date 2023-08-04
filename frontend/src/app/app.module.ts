@@ -7,12 +7,14 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { ScreeningFormComponent } from './component/screening-form/screening-form.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ScreeningListComponent } from './component/screening-list/screening-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ScreeningFormComponent
+    ScreeningFormComponent,
+    ScreeningListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,15 @@
 package com.example.cinema_exam_practice.controller;
 
 import com.example.cinema_exam_practice.dto.in.ScreeningCommand;
+import com.example.cinema_exam_practice.dto.out.ScreeningListItem;
 import com.example.cinema_exam_practice.service.ScreeningService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/screenings")
@@ -22,5 +24,11 @@ public class ScreeningController {
     public ResponseEntity<Void> addScreening(@RequestBody ScreeningCommand screeningCommand) {
         screeningService.addScreening(screeningCommand);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ScreeningListItem>> getAllScreening() {
+        List<ScreeningListItem> screeningListItemList = screeningService.getAllScreening();
+        return new ResponseEntity<>(screeningListItemList, HttpStatus.OK);
     }
 }

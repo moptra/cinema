@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 public class ScreeningCommand {
     private String title;
     private LocalDateTime screeningDate;

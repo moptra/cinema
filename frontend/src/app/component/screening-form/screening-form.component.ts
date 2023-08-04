@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ScreeningService} from "../../service/screening.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-screening-form',
@@ -12,7 +13,8 @@ export class ScreeningFormComponent {
   screeningForm: FormGroup;
 
   constructor(private screeningService: ScreeningService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private router: Router) {
     this.screeningForm = formBuilder.group({
       title: ['', Validators.required],
       screeningDate: ['', Validators.required],
@@ -27,10 +29,9 @@ export class ScreeningFormComponent {
       next: data => {},
       error: err => console.log(err),
       complete: () => {
-        this.screeningForm.reset();
+        this.router.navigate(['screening-list']);
       }
     });
-
   }
 
 }
