@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { ScreeningListComponent } from './component/screening-list/screening-list.component';
 import { ReservationFormComponent } from './component/reservation-form/reservation-form.component';
 import { ReservationListComponent } from './component/reservation-list/reservation-list.component';
+import { MovieSummaryListComponent } from './component/movie-summary-list/movie-summary-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReservationListComponent } from './component/reservation-list/reservati
     ScreeningFormComponent,
     ScreeningListComponent,
     ReservationFormComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    MovieSummaryListComponent
   ],
   imports: [
     BrowserModule,

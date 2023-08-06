@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Movie title</th>
+    <th scope="col">Number of screenings</th>
+    <th scope="col">Tickets solf</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let movieSummary of movieSummaryList">
+    <td>{{movieSummary.title}}</td>
+    <td>{{movieSummary.numberOfScreenings}}</td>
+    <td>{{movieSummary.sumOfSoldTickets}}</td>
+  </tr>
+  </tbody>
+</table>
+
