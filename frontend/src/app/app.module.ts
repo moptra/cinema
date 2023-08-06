@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import { ScreeningListComponent } from './component/screening-list/screening-list.component';
 import { ReservationFormComponent } from './component/reservation-form/reservation-form.component';
+import { ReservationListComponent } from './component/reservation-list/reservation-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReservationFormComponent } from './component/reservation-form/reservati
     NavbarComponent,
     ScreeningFormComponent,
     ScreeningListComponent,
-    ReservationFormComponent
+    ReservationFormComponent,
+    ReservationListComponent
   ],
   imports: [
     BrowserModule,

@@ -11,13 +11,13 @@ import java.time.format.DateTimeFormatter;
 public class ReservationListItem {
     private String userName;
     private String title;
-    private Integer numberOfSeats;
+    private Integer numberOfReservedSeats;
     private String timeOfScreening;
 
     public ReservationListItem(Reservation reservation) {
         this.userName = reservation.getName();
         this.title = reservation.getScreening().getTitle();
-        this.numberOfSeats = reservation.getScreening().getSeats();
+        this.numberOfReservedSeats = reservation.getReservedSeats();
         this.timeOfScreening = reservation.getScreening().getScreeningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 }

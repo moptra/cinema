@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Movie title</th>
+    <th scope="col">Number of reserved seats</th>
+    <th scope="col">Date of screening</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let reservation of reservations">
+    <td>{{reservation.userName}}</td>
+    <td>{{reservation.title}}</td>
+    <td>{{reservation.numberOfReservedSeats}}</td>
+    <td>{{formatDate(reservation.timeOfScreening)}} {{formatTime(reservation.timeOfScreening)}}</td>
+
+  </tr>
+  </tbody>
+</table>
+
