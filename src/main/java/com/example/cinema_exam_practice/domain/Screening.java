@@ -25,7 +25,7 @@ public class Screening {
     private Integer seats;
     @Column
     private String imageUrl;
-    @OneToMany(mappedBy = "screening")
+    @OneToMany(mappedBy = "screening", fetch = FetchType.EAGER)
     private List<Reservation> reservations = new ArrayList<>();
 
     public Screening(ScreeningCommand screeningCommand) {

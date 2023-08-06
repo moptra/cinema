@@ -1,0 +1,45 @@
+<form [formGroup]="reservationForm">
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Please provide your name!" formControlName="name"
+           [ngClass]="{'is-invalid': (reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched)}"
+    >
+    <small class="alert text-danger" *ngIf="reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched">
+      Please enter your name!
+    </small>
+  </div>
+
+  <div class="mb-3">
+    <label for="reservedSeats" class="form-label">Number of seats:</label>
+    <input type="number" class="form-control" id="reservedSeats" formControlName="reservedSeats"
+           [ngClass]="{'is-invalid': (reservationForm.get('reservedSeats')?.invalid && reservationForm.get('reservedSeats')?.touched)
+           || (reservationForm.get('reservedSeats')?.errors?.['serverError'])}"
+    >
+
+
+    <small class="alert text-danger" *ngIf="reservationForm.get('reservedSeats')?.invalid && reservationForm.get('reservedSeats')?.touched">
+      Please provide the number of tickets!
+    </small>
+
+    <small class="alert text-danger"
+      *ngIf="reservationForm.get('reservedSeats')?.errors?.['serverError']">
+      {{reservationForm.get('reservedSeats')?.errors?.['serverError']}}
+    </small>
+
+  </div>
+
+  <div class="mb-3 ">
+    <select class="form-select" formControlName="screeningTitle"
+            [ngClass]="{'is-invalid': (reservationForm.get('screeningTitle')?.invalid && reservationForm.get('screeningTitle')?.touched)}">
+      <option selected>Choose movie!</option>
+      <option *ngFor="let screening of screenings" >{{screening.title}}</option>
+    </select>
+    <small class="alert text-danger" *ngIf="reservationForm.get('screeningTitle')?.invalid && reservationForm.get('screeningTitle')?.touched">
+      Please choose a movie!
+    </small>
+  </div>
+
+  <button [disabled]="reservationForm.invalid" type="submit" class="btn btn-primary" (click)="saveReservation()" >Submit</button>
+
+</form>

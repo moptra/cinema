@@ -3,6 +3,7 @@ package com.example.cinema_exam_practice.service;
 import com.example.cinema_exam_practice.domain.Reservation;
 import com.example.cinema_exam_practice.domain.Screening;
 import com.example.cinema_exam_practice.dto.in.ReservationCommand;
+import com.example.cinema_exam_practice.dto.out.ReservationListItem;
 import com.example.cinema_exam_practice.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,5 +39,12 @@ public class ReservationService {
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
+    }
+
+    public List<ReservationListItem> getAllReservationsInReservationListItems() {
+        List<Reservation> reservationList = this.getAllReservations();
+        return reservationList.stream()
+                .map(ReservationListItem::new)
+                .collect(Collectors.toList());
     }
 }

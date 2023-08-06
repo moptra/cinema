@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ScreeningListItemModel} from "../../model/screening-list-item-model";
+import {ScreeningListItemModel} from "../../model/out/screening-list-item-model";
 import {ScreeningService} from "../../service/screening.service";
 
 @Component({
