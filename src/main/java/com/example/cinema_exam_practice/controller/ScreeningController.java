@@ -1,6 +1,7 @@
 package com.example.cinema_exam_practice.controller;
 
 import com.example.cinema_exam_practice.dto.in.ScreeningCommand;
+import com.example.cinema_exam_practice.dto.out.MovieSummaryListItem;
 import com.example.cinema_exam_practice.dto.out.ScreeningListItem;
 import com.example.cinema_exam_practice.service.ScreeningService;
 
@@ -31,4 +32,11 @@ public class ScreeningController {
         List<ScreeningListItem> screeningListItemList = screeningService.getAllScreening();
         return new ResponseEntity<>(screeningListItemList, HttpStatus.OK);
     }
+
+    @GetMapping("/summary")
+    public ResponseEntity<List<MovieSummaryListItem>> getScreeningSummary() {
+        List<MovieSummaryListItem> movieSummaryListItemList = screeningService.getScreeningSummary();
+        return new ResponseEntity<>(movieSummaryListItemList, HttpStatus.OK);
+    }
+
 }

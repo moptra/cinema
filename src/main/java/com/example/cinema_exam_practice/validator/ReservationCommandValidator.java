@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
@@ -33,10 +34,23 @@ public class ReservationCommandValidator implements Validator {
             ReservationCommand reservationCommand = (ReservationCommand) object;
 
             String title = reservationCommand.getScreeningTitle();
-            Screening screening = screeningRepository.getScreeningByTitle(title);
-            int totalSeats = screening.getSeats();
+            String formattedReservationDate = reservationCommand.getScreeningDate()
+                    .replaceAll("[^0-9]", "");
 
-            List<Reservation> reservationList = screening.getReservations();
+            List<Screening> screenings = screeningRepository.getScreeningsByTitle(title);
+
+            Screening searchedScreening = null;
+
+            for (Screening screening : screenings) {
+                if (formattedReservationDate.equals(screening.getScreeningDate()
+                        .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).replaceAll("[^0-9]", ""))) {
+                    searchedScreening = screening;
+                }
+            }
+
+            int totalSeats = searchedScreening.getSeats();
+
+            List<Reservation> reservationList = searchedScreening.getReservations();
 
             int reservedSeats = 0;
 

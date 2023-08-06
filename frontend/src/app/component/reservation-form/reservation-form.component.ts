@@ -17,6 +17,10 @@ export class ReservationFormComponent {
 
   screenings: ScreeningListItemModel[] = [];
 
+  movieTitle: string = '';
+
+  uniqueScreeningTitles: string[] = [];
+
   constructor(private reservationService: ReservationService,
               private formBuilder: FormBuilder,
               private screeningService: ScreeningService) {
@@ -24,6 +28,11 @@ export class ReservationFormComponent {
       name: ['', Validators.required],
       reservedSeats: [0, Validators.required],
       screeningTitle: ['', Validators.required],
+      screeningDate: ['', Validators.required]
+    });
+
+    this.reservationForm.get('screeningTitle')?.valueChanges.subscribe({
+      next: data => this.movieTitle = data,
     });
 
 
@@ -44,6 +53,7 @@ export class ReservationFormComponent {
         validationHandler(err, this.reservationForm);
       },
       complete: () => {
+        console.log(data);
         this.reservationForm.reset();
       }
     });
@@ -54,8 +64,21 @@ export class ReservationFormComponent {
       next: data => this.screenings = data,
       error: err => console.log(err),
       complete: () => {
+        this.screenings.forEach((element) => {
+          if (!this.uniqueScreeningTitles.includes(element.title)) {
+            this.uniqueScreeningTitles.push(element.title)
+          }
+        });
       }
     });
+  }
+
+  formatDate(date: string) {
+    return new Date(date).toLocaleDateString();
+  }
+
+  formatTime(date: string) {
+    return new Date(date).toLocaleTimeString();
   }
 
 }

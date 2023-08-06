@@ -25,4 +25,12 @@ export class ScreeningListComponent {
       complete: () => {},
     })
   }
+
+  formatDate(date: string) {
+    return new Date(date).toLocaleDateString();
+  }
+
+  formatTime(date: string) {
+    return new Date(date).toLocaleTimeString();
+  }
 }

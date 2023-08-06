@@ -5,7 +5,8 @@
     <input type="text" class="form-control" id="name" placeholder="Please provide your name!" formControlName="name"
            [ngClass]="{'is-invalid': (reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched)}"
     >
-    <small class="alert text-danger" *ngIf="reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched">
+    <small class="alert text-danger"
+           *ngIf="reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched">
       Please enter your name!
     </small>
   </div>
@@ -18,28 +19,54 @@
     >
 
 
-    <small class="alert text-danger" *ngIf="reservationForm.get('reservedSeats')?.invalid && reservationForm.get('reservedSeats')?.touched">
+    <small class="alert text-danger"
+           *ngIf="reservationForm.get('reservedSeats')?.invalid && reservationForm.get('reservedSeats')?.touched">
       Please provide the number of tickets!
     </small>
 
     <small class="alert text-danger"
-      *ngIf="reservationForm.get('reservedSeats')?.errors?.['serverError']">
+           *ngIf="reservationForm.get('reservedSeats')?.errors?.['serverError']">
       {{reservationForm.get('reservedSeats')?.errors?.['serverError']}}
     </small>
 
   </div>
 
-  <div class="mb-3 ">
-    <select class="form-select" formControlName="screeningTitle"
-            [ngClass]="{'is-invalid': (reservationForm.get('screeningTitle')?.invalid && reservationForm.get('screeningTitle')?.touched)}">
-      <option selected>Choose movie!</option>
-      <option *ngFor="let screening of screenings" >{{screening.title}}</option>
-    </select>
-    <small class="alert text-danger" *ngIf="reservationForm.get('screeningTitle')?.invalid && reservationForm.get('screeningTitle')?.touched">
-      Please choose a movie!
-    </small>
+  <div>
+
+    <div class="mb-3 ">
+      <select class="form-select" formControlName="screeningTitle"
+              [ngClass]="{'is-invalid': (reservationForm.get('screeningTitle')?.invalid && reservationForm.get('screeningTitle')?.touched)}">
+        <option selected>Choose movie!</option>
+        <option *ngFor="let screeningTitle of uniqueScreeningTitles, let i = index">
+            {{screeningTitle}}
+          </option>
+      </select>
+      <small class="alert text-danger"
+             *ngIf="reservationForm.get('screeningTitle')?.invalid && reservationForm.get('screeningTitle')?.touched">
+        Please choose a movie!
+      </small>
+    </div>
+
+    <div class="mb-3 ">
+      <select class="form-select" formControlName="screeningDate"
+              [ngClass]="{'is-invalid': (reservationForm.get('screeningDate')?.invalid && reservationForm.get('screeningDate')?.touched)}">
+        <option selected>Choose a date!</option>
+        <option *ngFor="let screening of screenings" >
+                    <div *ngIf="screening.title == movieTitle">
+                      {{formatDate(screening.screeningDate)}} {{formatTime(screening.screeningDate)}}
+                    </div>
+        </option>
+      </select>
+      <small class="alert text-danger"
+             *ngIf="reservationForm.get('screeningDate')?.invalid && reservationForm.get('screeningDate')?.touched">
+        Please choose a date!
+      </small>
+    </div>
+
   </div>
 
-  <button [disabled]="reservationForm.invalid" type="submit" class="btn btn-primary" (click)="saveReservation()" >Submit</button>
+  <button [disabled]="reservationForm.invalid" type="submit" class="btn btn-primary" (click)="saveReservation()">
+    Submit
+  </button>
 
 </form>

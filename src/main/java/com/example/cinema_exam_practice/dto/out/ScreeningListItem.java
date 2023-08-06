@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Data
@@ -13,14 +14,14 @@ import java.util.List;
 public class ScreeningListItem {
 
     private String title;
-    private LocalDateTime screeningDate;
+    private String screeningDate;
     private Integer totalSeats;
     private Integer freeSeats;
     private String imageUrl;
 
     public ScreeningListItem(Screening screening) {
         this.title = screening.getTitle();
-        this.screeningDate = screening.getScreeningDate();
+        this.screeningDate = screening.getScreeningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         this.totalSeats = screening.getSeats();
 
         Integer numberOfReservedSeats = 0;

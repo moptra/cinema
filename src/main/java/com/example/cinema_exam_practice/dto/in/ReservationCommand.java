@@ -9,5 +9,6 @@ public class ReservationCommand {
     private String name;
     private Integer reservedSeats;
     private String screeningTitle;
+    private String screeningDate;
 
 }

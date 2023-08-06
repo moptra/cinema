@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,10 +28,15 @@ public class ReservationService {
 
     public void addReservation(ReservationCommand reservationCommand) {
         String screeningTitle = reservationCommand.getScreeningTitle();
+        String screeningDate = reservationCommand.getScreeningDate();
         List<Screening> screenings = screeningService.getScreenings();
 
         for (Screening screening : screenings) {
-            if (screening.getTitle().equals((screeningTitle))) {
+            String formattedScreeningDate = screening.getScreeningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).replaceAll("[^0-9]", "");
+            String formattedReservationDate = screeningDate.replaceAll("[^0-9]", "");
+
+            if (screening.getTitle().equals((screeningTitle))
+                    && formattedScreeningDate.equals(formattedReservationDate)) {
                 Reservation reservation = new Reservation(reservationCommand, screening);
                 reservationRepository.save(reservation);
             }

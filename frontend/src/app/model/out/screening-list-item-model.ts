@@ -1,6 +1,6 @@
 export interface ScreeningListItemModel {
   title: string,
-  screeningDate: Date,
+  screeningDate: string,
   totalSeats: number,
   freeSeats: number,
   imageUrl: string;

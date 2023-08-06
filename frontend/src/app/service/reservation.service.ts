@@ -14,6 +14,7 @@ export class ReservationService {
   constructor(private http: HttpClient) { }
 
   addReservation(data: ReservationCommandModel): Observable<any> {
+    console.log(data);
     return this.http.post(BASE_URL, data);
   }
 
